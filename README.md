@@ -1,56 +1,68 @@
 # Rozkladka
 
+**Українською** · [English](README.en.md)
+
 **Набрав `ghbdsn` замість `привіт`? Натисни пробіл — і слово виправиться саме.**
-*Typed `ghbdtn` instead of `привет`? Press Space and it fixes itself.*
 
-A tiny open-source alternative to Punto Switcher for Windows: no ads, no telemetry, no account,
-one small executable that lives in the tray.
+Маленька програма з відкритим кодом замість Punto Switcher для Windows: без реклами, без
+телеметрії, без акаунтів. Один невеликий файл, який живе в треї.
 
-## Automatic mode
+## Завантажити
 
-After every word, when you press Space, Rozkladka checks it: if the word is **not** a word in
-the layout you typed it in, but the same keys spell a **real word** in the other layout, it is
-retyped and the layout switches. `ghbdtn ` becomes `привет `, `руддщ ` becomes `hello `.
+Завантаж `rozkladka.exe` з [останнього релізу](https://github.com/makquella/rozkladka/releases/latest)
+і запусти: встановлювати нічого не треба, програма з'явиться в треї. Автозапуск разом із
+Windows вмикається в меню трею.
 
-The dictionaries are Windows' own spell checkers (Settings → Time & language → Language →
-your language → Options → *Basic typing*). Nothing is bundled, every word form is known, and
-words you added to the Windows dictionary count.
+## Автоматичний режим
 
-Wrong fix? Tap **Shift** twice right away: the word goes back, and Rozkladka leaves that word
-alone for the rest of the session. Single letters are never fixed automatically, and anything
-you type or click after the space cancels a pending fix. Toggle the mode in the tray menu.
+Після кожного слова, коли ти натискаєш пробіл, Rozkladka його перевіряє: якщо в розкладці,
+якою ти друкував, це **не** слово, а ті самі клавіші в іншій розкладці дають **справжнє
+слово** — воно передруковується, а розкладка перемикається. `ghbdsn ` стає `привіт `,
+`руддщ ` стає `hello `.
 
-## Hotkeys
+Словники — це вбудована перевірка правопису Windows (Параметри → Час і мова → Мова й регіон
+→ твоя мова → Параметри мови → *Базовий набір тексту*). Програма нічого не тягне з собою,
+знає всі форми слів і враховує слова, які ти додав до словника Windows.
 
-| Keys | What happens |
+Виправило неправильно? Одразу двічі натисни **Shift**: слово повернеться, і до кінця сеансу
+Rozkladka його більше не чіпатиме. Окремі літери автоматично не виправляються, а якщо після
+пробілу ти встиг щось надрукувати чи клацнути, виправлення скасовується. Режим вмикається й
+вимикається в меню трею.
+
+## Гарячі клавіші
+
+| Клавіші | Що відбувається |
 | --- | --- |
-| **Pause** or **Shift, Shift** (two quick taps) | Retypes the last word (and the spaces after it) in the other layout and switches the layout. Press again to undo. |
-| **Ctrl, Ctrl** (two quick taps) or **Shift+Pause** | Converts the selected text to the other layout. |
-| Hold **Ctrl**, tap **Shift, Shift** | Selects everything in the field (Ctrl+A) and converts it. |
+| **Pause** або **Shift, Shift** (двічі швидко) | Передруковує останнє слово (і пробіли після нього) в іншій розкладці та перемикає розкладку. Повторне натискання повертає назад. |
+| **Ctrl, Ctrl** (двічі швидко) або **Shift+Pause** | Перекладає виділений текст в іншу розкладку. |
+| Затисни **Ctrl** і двічі натисни **Shift** | Виділяє все в полі (Ctrl+A) і перекладає. |
 
-It works with any layouts installed in Windows: English with Ukrainian, Russian, Belarusian
-and others. Characters come from Windows' own layout tables, so nothing is hard-coded.
+Працює з будь-якими розкладками, встановленими у Windows: англійська з українською,
+російською, білоруською та іншими. Символи беруться з таблиць розкладок самої Windows, тож
+нічого не зашито в код.
 
-## Privacy
+## Приватність
 
-Rozkladka has to see your key presses to know what the last word was. It keeps **only the
-last 256 keys in memory**, forgets them on every click, shortcut or window switch, never writes
-them to disk and has no network code at all. The source is short: read `src/hook.rs`.
+Щоб знати останнє слово, Rozkladka мусить бачити натискання клавіш. Вона зберігає **лише
+останні 256 клавіш у пам'яті**, забуває їх після кожного кліку, сполучення клавіш чи зміни
+вікна, ніколи не пише їх на диск і взагалі не має мережевого коду. Код короткий — перевір
+сам: `src/hook.rs`.
 
-It does nothing in full-screen windows, so games never receive synthetic typing.
+У повноекранних вікнах програма нічого не робить, тож в ігри вона нічого не надрукує.
 
-## Limits (0.1)
+## Обмеження (0.1)
 
-- Windows only.
-- Automatic mode needs Windows spelling for both languages (see above); without it, use the
-  hotkeys. Learned exceptions are forgotten on restart.
-- Windows running as administrator ignore input from a normal program; run Rozkladka as
-  administrator too if you need it there.
-- Converting a selection goes through the clipboard: the previous clipboard **text** is
-  restored, other clipboard content (images, files) is not.
-- The executable is not code-signed yet, so SmartScreen may warn on first start.
+- Лише Windows.
+- Автоматичному режиму потрібна перевірка правопису Windows для обох мов (див. вище); без неї
+  працюють гарячі клавіші. Вивчені винятки забуваються після перезапуску.
+- Вікна, запущені від імені адміністратора, ігнорують введення від звичайних програм; якщо
+  потрібно там, запусти Rozkladka від адміністратора.
+- Виправлення виділеного тексту йде через буфер обміну: попередній **текст** у буфері
+  відновлюється, інший вміст (зображення, файли) — ні.
+- Файл поки що не має цифрового підпису, тож SmartScreen може попередити під час першого
+  запуску.
 
-## How it works
+## Як це працює
 
 ```
  keyboard/mouse hook (main thread)          action thread
@@ -58,31 +70,33 @@ It does nothing in full-screen windows, so games never receive synthetic typing.
  │ record physical keys of the  │ ──────▶ │ last word: Backspace × n, type the │
  │ current word (buffer.rs);    │         │ same keys in the other layout as   │
  │ reset on click / shortcut /  │         │ Unicode, switch layout             │
- │ window change; detect Pause  │         │ selection: Ctrl+C, convert, Ctrl+V,│
- │ and double Shift (hook.rs)   │         │ restore clipboard (actions.rs)     │
- └──────────────────────────────┘         └────────────────────────────────────┘
+ │ window change; detect Pause, │         │ selection: Ctrl+C, convert, Ctrl+V,│
+ │ double Shift/Ctrl (hook.rs)  │         │ restore clipboard (actions.rs)     │
+ └──────────────────────────────┘         │ after Space: spell-check (auto.rs) │
+                                          └────────────────────────────────────┘
                  layouts.rs: ToUnicodeEx / VkKeyScanExW conversion between layouts
 ```
 
-The hook stores **keys**, not characters: the key that typed `g` types `п` in the other
-layout. Conversion asks Windows what each recorded key produces in the target layout, so any
-installed pair works, Shift and Caps Lock included.
+Хук зберігає **клавіші**, а не символи: клавіша, що надрукувала `g`, в іншій розкладці друкує
+`п`. Під час перекладу програма питає Windows, що дає кожна записана клавіша в цільовій
+розкладці, тож працює будь-яка встановлена пара, разом із Shift і Caps Lock.
 
-## Roadmap
+## Плани
 
-1. Persistent exceptions, per-app opt-out, fixing after punctuation and Enter, not just Space.
-2. Settings window: hotkeys, layout pair, apps to ignore.
-3. Signed installer, `winget install rozkladka`.
-4. Ukrainian, English and Russian interface.
+1. Винятки, що зберігаються між запусками; вимкнення для окремих програм; перевірка після
+   розділових знаків і Enter, а не лише пробілу.
+2. Вікно налаштувань: гарячі клавіші, пара розкладок, програми-винятки.
+3. Підписаний інсталятор, `winget install rozkladka`.
+4. Інтерфейс українською, англійською та російською.
 
-## Build
+## Збірка
 
 ```powershell
 cargo build --release
 ```
 
-The result is `target\release\rozkladka.exe`. Rust 1.88 or newer (edition 2024).
+Результат — `target\release\rozkladka.exe`. Потрібен Rust 1.88 або новіший (edition 2024).
 
-## License
+## Ліцензія
 
-MIT or Apache-2.0, at your option: see `LICENSE-MIT` and `LICENSE-APACHE`.
+MIT або Apache-2.0 на твій вибір: див. `LICENSE-MIT` і `LICENSE-APACHE`.
