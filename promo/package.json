@@ -1,0 +1,17 @@
+{
+  "name": "rozkladka-promo",
+  "private": true,
+  "description": "The demo video and README GIF for Rozkladka, made with Remotion.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "video": "remotion render src/index.ts Promo out/rozkladka-promo.mp4 --codec=h264 --crf=18",
+    "gif": "remotion render src/index.ts Promo out/demo.gif --codec=gif --every-nth-frame=2 --scale=0.625"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.546",
+    "@remotion/google-fonts": "^4.0.546",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.546"
+  }
+}
