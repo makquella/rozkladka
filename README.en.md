@@ -4,7 +4,7 @@
 
 **Typed `ghbdtn` instead of `привет`? Press Space and it fixes itself.**
 
-![Rozkladka: ghbdsn becomes привіт after Space](assets/demo.gif)
+![Rozkladka: dljvf becomes «вдома» because the layout was wrong](assets/demo.gif)
 
 A tiny open-source alternative to Punto Switcher for Windows: no ads, no telemetry, no account,
 one small executable that lives in the tray.
