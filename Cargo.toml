@@ -1,0 +1,21 @@
+[package]
+name = "rozkladka"
+version = "0.1.0"
+edition = "2024"
+description = "Fixes text typed in the wrong keyboard layout (ghbdsn → привіт). A tiny open-source Punto Switcher alternative for Windows."
+license = "MIT OR Apache-2.0"
+keywords = ["keyboard", "layout", "punto-switcher", "ukrainian", "windows"]
+categories = ["text-processing", "accessibility"]
+
+[dependencies]
+clipboard-win = "5.4"
+tray-icon = "0.26"
+windows = { version = "0.62", features = ["Win32_Foundation", "Win32_Globalization", "Win32_Graphics_Gdi", "Win32_Security", "Win32_System_Com", "Win32_System_DataExchange", "Win32_System_LibraryLoader", "Win32_System_Registry", "Win32_System_Threading", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging"] }
+
+# A background tray tool should be small: one stripped executable.
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+opt-level = "s"
+panic = "abort"
